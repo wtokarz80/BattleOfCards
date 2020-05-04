@@ -53,39 +53,27 @@ public class XMLParser {
             }
             Element element = (Element) node;
             String cardName = element.getAttribute("name");
-//            System.out.println(cardName);
 
             NodeList attributes = element.getElementsByTagName("Attr");
-            int strength = 0;
-            int intelligence = 0;
-            int agility = 0;
-            int charisma = 0;
-            for(int j = 0; j < attributes.getLength(); j++){
-                if (j == 0){
-                    Node attNode = attributes.item(j);
-                    Element attrElement = (Element) attNode;
-                    strength = Integer.parseInt(attrElement.getTextContent());
-//                    System.out.println(strength);
-                } else if(j == 1){
-                    Node attNode = attributes.item(j);
-                    Element attrElement = (Element) attNode;
-                    intelligence = Integer.parseInt( attrElement.getTextContent());
-//                    System.out.println(intelligence);
-                } else if (j == 2){
-                    Node attNode = attributes.item(j);
-                    Element attrElement = (Element) attNode;
-                    agility = Integer.parseInt(attrElement.getTextContent());
-//                    System.out.println(agility);
-                } else if (j == 3) {
-                    Node attNode = attributes.item(j);
-                    Element attrElement = (Element) attNode;
-                    charisma = Integer.parseInt(attrElement.getTextContent());
-//                    System.out.println(charisma);
-                }
-            }
+
+            Node attStrNode = attributes.item(0);
+            Element attrStrElement = (Element) attStrNode;
+            int strength = Integer.parseInt(attrStrElement.getTextContent());
+
+            Node attIntNode = attributes.item(1);
+            Element attrIntElement = (Element) attIntNode;
+            int intelligence = Integer.parseInt(attrIntElement.getTextContent());
+
+            Node attAgilNode = attributes.item(2);
+            Element attrAgilElement = (Element) attAgilNode;
+            int agility = Integer.parseInt(attrAgilElement.getTextContent());
+
+            Node attCharNode = attributes.item(3);
+            Element attrCharElement = (Element) attCharNode;
+            int charisma = Integer.parseInt(attrCharElement.getTextContent());
+
             Card card  = new Card(cardName, strength, intelligence, agility, charisma);
             deck.addCard(card);
         }
     }
-
 }

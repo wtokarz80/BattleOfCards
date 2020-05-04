@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Cards>
+	<Card name ="Harry Potter">
+		<Attributes>
+			<Attr type="strength">2</Attr>
+			<Attr type="intelligence">7</Attr>
+			<Attr type="agility">4</Attr>
+			<Attr type="charisma">3</Attr>
+		</Attributes>
+	</Card>
+
+	<Card name ="James Bond">
+		<Attributes>
+			<Attr type="strength">6</Attr>
+			<Attr type="intelligence">8</Attr>
+			<Attr type="agility">5</Attr>
+			<Attr type="charisma">10</Attr>
+		</Attributes>
+	</Card>
+
+	<Card name ="Indiana Jones">
+		<Attributes>
+			<Attr type="strength">5</Attr>
+			<Attr type="intelligence">5</Attr>
+			<Attr type="agility">7</Attr>
+			<Attr type="charisma">8</Attr>
+		</Attributes>
+	</Card>
+
+	<Card name ="Luck Skywalker">
+		<Attributes>
+			<Attr type="strength">10</Attr>
+			<Attr type="intelligence">4</Attr>
+			<Attr type="agility">7</Attr>
+			<Attr type="charisma">4</Attr>
+		</Attributes>
+	</Card>
+
+	<Card name ="Gandalf">
+		<Attributes>
+			<Attr type="strength">8</Attr>
+			<Attr type="intelligence">10</Attr>
+			<Attr type="agility">3</Attr>
+			<Attr type="charisma">5</Attr>
+		</Attributes>
+	</Card>
+
+    <Card name ="Jack Sparrow">
+		<Attributes>
+			<Attr type="strength">4</Attr>
+			<Attr type="intelligence">3</Attr>
+			<Attr type="agility">7</Attr>
+			<Attr type="charisma">6</Attr>
+		</Attributes>
+	</Card>
+</Cards>

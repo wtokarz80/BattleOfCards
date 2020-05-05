@@ -40,6 +40,7 @@ public class Ui {
         System.out.print("\033[H\033[2J");
     }
 
+
     public static int getNumericInput(){
         int userInput;
         Scanner scanner = new Scanner(System.in);

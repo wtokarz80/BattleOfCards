@@ -1,13 +1,9 @@
 public class ComputerPlayer extends Player {
 
-    public ComputerPlayer(String playerName, Hand hand, boolean isAvailable) {
-        super(playerName, hand, isAvailable);
+    public ComputerPlayer(String playerName, Hand hand) {
+        super(playerName, hand);
     }
 
-    @Override
-    void setName(String name) {
-
-    }
 
     @Override
     void chooseStatistic() {

@@ -54,6 +54,13 @@ public class Ui {
         return userInputString;
     }
 
+    public static String getStringInput(String message){
+        String userStringInput;
+        Scanner scanner = new Scanner(System.in);
+        userStringInput = scanner.nextLine();
+        return userStringInput;
+    }
+
     public static void welcomeScreen(){
         clearScreen();
         System.out.println("Welcome To Battle Cards \n");
@@ -90,5 +97,17 @@ public class Ui {
         System.out.println("Game Ends When Any Of The Players Or Computers Runs Out Of Cards To Play\n");
         System.out.println("Player With The Most Amount Of Cards Wins\n");
         System.out.println("Good Luck!\n");
+    }
+
+    public static Player createPlayer(boolean isHuman) {
+        String playerName = getStringInput("Insert Your name please: ");
+        XMLParser xmlParser = new XMLParser();
+        xmlParser.getDeck().shuffle();
+        xmlParser.getDeck().dealCards(3);
+        Hand hand = xmlParser.getDeck().getHand();
+        if (isHuman){
+            return new HumanPlayer(playerName, hand);}
+            else
+                {return new ComputerPlayer("computer", hand);}
     }
 }

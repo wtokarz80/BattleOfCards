@@ -11,6 +11,9 @@ public class Main {
 
 //        System.out.println(xmlParser.getDeck().getHand().putCardOnTable());
 
-        Ui.displayMenu();
+       Ui.displayMenu();
+
+
+
     }
 }

@@ -1,12 +1,11 @@
 public abstract class Player {
     private String playerName;
     private Hand hand;
-    private boolean isAvailable;
 
-    public Player(String playerName, Hand hand, boolean isAvailable){
+
+    public Player(String playerName, Hand hand){
         this.playerName = playerName;
         this.hand = hand;
-        this.isAvailable = isAvailable;
     }
 
     public Hand getHand() {
@@ -17,7 +16,9 @@ public abstract class Player {
         return playerName;
     }
 
-    abstract void setName(String name);  //abstract, because computer will have default name
+    public void setName(String name){
+        this.playerName = name;
+    }
 
     public String showCurrentCard(){
         return hand.getHandList().get(0).toString();

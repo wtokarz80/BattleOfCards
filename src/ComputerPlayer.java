@@ -1,7 +1,7 @@
 public class ComputerPlayer extends Player {
 
-    public ComputerPlayer(String playerName, Hand hand, boolean isAvailable) {
-        super(playerName, hand, isAvailable);
+    public ComputerPlayer(String playerName, Hand hand) {
+        super(playerName, hand);
     }
 
 

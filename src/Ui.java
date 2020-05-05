@@ -99,13 +99,15 @@ public class Ui {
         System.out.println("Good Luck!\n");
     }
 
-    public static Player createPlayer() {
+    public static Player createPlayer(boolean isHuman) {
         String playerName = getStringInput("Insert Your name please: ");
         XMLParser xmlParser = new XMLParser();
         xmlParser.getDeck().shuffle();
         xmlParser.getDeck().dealCards(3);
         Hand hand = xmlParser.getDeck().getHand();
-        Player player = new HumanPlayer(playerName, hand, true);
-        return player;
+        if (isHuman){
+            return new HumanPlayer(playerName, hand);}
+            else
+                {return new ComputerPlayer("computer", hand);}
     }
 }

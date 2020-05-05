@@ -1,12 +1,11 @@
 public abstract class Player {
     private String playerName;
     private Hand hand;
-    private boolean isAvailable;
 
-    public Player(String playerName, Hand hand, boolean isAvailable){
+
+    public Player(String playerName, Hand hand){
         this.playerName = playerName;
         this.hand = hand;
-        this.isAvailable = isAvailable;
     }
 
     public Hand getHand() {

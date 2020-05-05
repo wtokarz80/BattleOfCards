@@ -55,12 +55,6 @@ public class Ui {
         return userInputString;
     }
 
-    public static String getStringInput(String message){
-        String userStringInput;
-        Scanner scanner = new Scanner(System.in);
-        userStringInput = scanner.nextLine();
-        return userStringInput;
-    }
 
     public static void welcomeScreen(){
         clearScreen();
@@ -101,11 +95,9 @@ public class Ui {
     }
 
     public static Player createPlayer(boolean isHuman) {
-        String playerName = getStringInput("Insert Your name please: ");
-        XMLParser xmlParser = new XMLParser();
-        xmlParser.getDeck().shuffle();
-        xmlParser.getDeck().dealCards(3);
-        Hand hand = xmlParser.getDeck().getHand();
+        System.out.println("Enter Your name, please");
+        String playerName = getStringInput();
+        Hand hand = new Hand();
         if (isHuman){
             return new HumanPlayer(playerName, hand);}
             else

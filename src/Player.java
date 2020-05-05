@@ -26,6 +26,10 @@ public abstract class Player {
         this.playerName = name;
     }
 
+    public void setHand(Hand hand){
+        this.hand = hand;
+    }
+
     public Card showCurrentCard(){
         Card card = hand.getHandList().get(0);
         hand.getHandList().remove(0);

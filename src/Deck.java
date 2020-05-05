@@ -24,7 +24,7 @@ public class Deck {
         return hand;
     }
 
-    public void dealCards(int numberOfCards){
+    public Hand dealCards(int numberOfCards){
 
         if (numberOfCards > cardList.size() || numberOfCards <= 0){
             numberOfCards = cardList.size();
@@ -37,6 +37,7 @@ public class Deck {
                 iterator.remove();
             }
         }
+        return hand;
     }
 
     public void shuffle(){
@@ -48,6 +49,18 @@ public class Deck {
         return "Deck{" +
                 "cardList=" + cardList +
                 '}';
+    }
+
+    public void removeCard(int i){
+        cardList.remove(i);
+    }
+
+    public int getSize(){
+        return cardList.size();
+    }
+
+    public Card getCardByIndex(int k){
+        return cardList.get(k);
     }
 
 

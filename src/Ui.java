@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Ui {
 
-    public void displayMenu(){
+    public static void displayMenu(){
         boolean isRunning = true;
         System.out.println("Welcome To Battle Cards\n");
         while(isRunning){
-            int userInput = getInput("Select on of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
+            System.out.println("Select on of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
+            int userInput = getInput();
             if(userInput == 1){
                 //start the game
                 isRunning = false;
@@ -33,7 +34,7 @@ public class Ui {
         System.out.print("\033[H\033[2J");
     }
 
-    public static int getInput(String message){
+    public static int getInput(){
         int userInput;
         Scanner scanner = new Scanner(System.in);
         userInput = scanner.nextInt();

@@ -10,5 +10,6 @@ public class Main {
         System.out.println(xmlParser.getDeck().getCardList().toString());
         System.out.println(xmlParser.getDeck().getHand().putCardOnTable());
 
+        Ui.displayMenu();
     }
 }

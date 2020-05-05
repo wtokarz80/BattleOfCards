@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
-
 public class Deck {
 
     private List<Card> cardList;
@@ -25,10 +24,6 @@ public class Deck {
         return hand;
     }
 
-    public void shuffle(){
-        Collections.shuffle(cardList);
-    }
-
     public void dealCards(int numberOfCards){
         Iterator<Card> iterator = cardList.iterator();
         for (int i = 0; i < numberOfCards; i++){
@@ -40,10 +35,16 @@ public class Deck {
         }
     }
 
+    public void shuffle(){
+        Collections.shuffle(cardList);
+    }
+
     @Override
     public String toString() {
         return "Deck{" +
                 "cardList=" + cardList +
                 '}';
     }
+
+
 }

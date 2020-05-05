@@ -1,11 +1,17 @@
 public abstract class Player {
     private String playerName;
     private Hand hand;
+    private boolean canPlay;
+    private Card currentCard;
 
 
     public Player(String playerName, Hand hand){
         this.playerName = playerName;
         this.hand = hand;
+    }
+
+    public void ifCanPlay(boolean canPlay){
+        this.canPlay = canPlay;
     }
 
     public Hand getHand() {
@@ -20,9 +26,12 @@ public abstract class Player {
         this.playerName = name;
     }
 
-    public String showCurrentCard(){
-        return hand.getHandList().get(0).toString();
+    public Card showCurrentCard(){
+        Card card = hand.getHandList().get(0);
+        hand.getHandList().remove(0);
+        return currentCard;
 }
+
     abstract void chooseStatistic();
 
 }

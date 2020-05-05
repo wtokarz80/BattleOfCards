@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 public class Deck {
@@ -29,10 +30,13 @@ public class Deck {
     }
 
     public void dealCards(int numberOfCards){
-        for (int i = 0; i < numberOfCards; i++) {
-            Card card = cardList.get(i);
-            hand.addCard(card);
-//            cardList.remove(i);
+        Iterator<Card> iterator = cardList.iterator();
+        for (int i = 0; i < numberOfCards; i++){
+            if (iterator.hasNext()) {
+                Card card = iterator.next();
+                hand.addCard(card);
+                iterator.remove();
+            }
         }
     }
 

@@ -8,7 +8,8 @@ public class Main {
         xmlParser.getDeck().dealCards(2);
         System.out.println(xmlParser.getDeck().getHand());
         System.out.println(xmlParser.getDeck().getCardList().toString());
-        System.out.println(xmlParser.getDeck().getHand().putCardOnTable());
+
+//        System.out.println(xmlParser.getDeck().getHand().putCardOnTable());
 
         Ui.displayMenu();
     }

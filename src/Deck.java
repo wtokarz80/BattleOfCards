@@ -25,6 +25,10 @@ public class Deck {
     }
 
     public void dealCards(int numberOfCards){
+
+        if (numberOfCards > cardList.size() || numberOfCards <= 0){
+            numberOfCards = cardList.size();
+        }
         Iterator<Card> iterator = cardList.iterator();
         for (int i = 0; i < numberOfCards; i++){
             if (iterator.hasNext()) {

@@ -2,6 +2,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -56,24 +57,19 @@ public class XMLParser {
 
             NodeList attributes = element.getElementsByTagName("Attr");
 
-            Node attStrNode = attributes.item(0);
-            Element attrStrElement = (Element) attStrNode;
-            int strength = Integer.parseInt(attrStrElement.getTextContent());
-
-            Node attIntNode = attributes.item(1);
-            Element attrIntElement = (Element) attIntNode;
-            int intelligence = Integer.parseInt(attrIntElement.getTextContent());
-
-            Node attAgilNode = attributes.item(2);
-            Element attrAgilElement = (Element) attAgilNode;
-            int agility = Integer.parseInt(attrAgilElement.getTextContent());
-
-            Node attCharNode = attributes.item(3);
-            Element attrCharElement = (Element) attCharNode;
-            int charisma = Integer.parseInt(attrCharElement.getTextContent());
+            int strength = getAttribute(attributes, 0);
+            int intelligence = getAttribute(attributes, 1);
+            int agility = getAttribute(attributes, 2);
+            int charisma = getAttribute(attributes, 3);
 
             Card card  = new Card(cardName, strength, intelligence, agility, charisma);
             deck.addCard(card);
         }
+    }
+
+    private int getAttribute(NodeList attributes, int attrNumber) {
+        Node attNode = attributes.item(attrNumber);
+        Element attrElement = (Element) attNode;
+        return Integer.parseInt(attrElement.getTextContent());
     }
 }

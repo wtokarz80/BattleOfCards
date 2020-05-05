@@ -6,8 +6,26 @@ public class Ui {
         boolean isRunning = true;
         System.out.println("Welcome To Battle Cards\n");
         while(isRunning){
-            int choice;
-            getInput("Select on of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(4)Quit The Game");
+            int userInput = getInput("Select on of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
+            if(userInput == 1){
+                //start the game
+                isRunning = false;
+            }
+            else if(userInput == 2){
+                clearScreen();
+                displayAbout();
+            }
+            else if(userInput == 3){
+                clearScreen();
+                creatorsList();
+            }
+            else if(userInput == 0){
+                exitGame();
+            }
+            else{
+                clearScreen();
+                System.out.println("Please Choose One Of The Available Options: \n");
+            }
         }
     }
 

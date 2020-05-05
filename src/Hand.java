@@ -6,6 +6,7 @@ public class Hand {
 
     private List<Card> handList;
 
+
     public Hand(){
         this.handList = new ArrayList<>();
     }
@@ -17,6 +18,13 @@ public class Hand {
     public List<Card> getHandList() {
         return handList;
     }
+
+    public Card putCardOnTable(){
+        Card card = handList.get(0);
+        handList.remove(0);
+        return card;
+    }
+
 
 
 

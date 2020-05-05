@@ -4,11 +4,6 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    void setName(String name) {
-
-    }
-
-    @Override
     void chooseStatistic() {
 
     }

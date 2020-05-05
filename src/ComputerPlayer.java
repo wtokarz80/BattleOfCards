@@ -4,10 +4,6 @@ public class ComputerPlayer extends Player {
         super(playerName, hand, isAvailable);
     }
 
-    @Override
-    void setName(String name) {
-
-    }
 
     @Override
     void chooseStatistic() {

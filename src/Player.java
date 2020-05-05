@@ -17,7 +17,9 @@ public abstract class Player {
         return playerName;
     }
 
-    abstract void setName(String name);  //abstract, because computer will have default name
+    public void setName(String name){
+        this.playerName = name;
+    }
 
     public String showCurrentCard(){
         return hand.getHandList().get(0).toString();

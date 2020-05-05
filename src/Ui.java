@@ -7,7 +7,7 @@ public class Ui {
         System.out.println("Welcome To Battle Cards\n");
         while(isRunning){
             System.out.println("Select on of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
-            int userInput = getInput();
+            int userInput = getNumericInput();
             if(userInput == 1){
                 //start the game
                 isRunning = false;
@@ -15,10 +15,14 @@ public class Ui {
             else if(userInput == 2){
                 clearScreen();
                 displayAbout();
+                System.out.println("Press Enter To Continue\n");
+                getStringInput();
             }
             else if(userInput == 3){
                 clearScreen();
                 creatorsList();
+                System.out.println("Press Enter To Continue\n");
+                getStringInput();
             }
             else if(userInput == 0){
                 exitGame();
@@ -26,6 +30,8 @@ public class Ui {
             else{
                 clearScreen();
                 System.out.println("Please Choose One Of The Available Options: \n");
+                System.out.println("Press Enter To Continue\n");
+                getStringInput();
             }
         }
     }
@@ -34,11 +40,18 @@ public class Ui {
         System.out.print("\033[H\033[2J");
     }
 
-    public static int getInput(){
+    public static int getNumericInput(){
         int userInput;
         Scanner scanner = new Scanner(System.in);
         userInput = scanner.nextInt();
         return userInput;
+    }
+
+    public static String getStringInput(){
+        String userInputString;
+        Scanner scanner = new Scanner(System.in);
+        userInputString = scanner.nextLine();
+        return userInputString;
     }
 
     public static void welcomeScreen(){

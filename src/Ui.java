@@ -95,10 +95,12 @@ public class Ui {
     }
 
     public static Player createPlayer(boolean isHuman) {
-        System.out.println("Enter Your name, please");
-        String playerName = getStringInput();
+
         Hand hand = new Hand();
         if (isHuman){
+            System.out.println("Enter Your name, please");
+            String playerName = getStringInput();
+
             return new HumanPlayer(playerName, hand);}
             else
                 {return new ComputerPlayer("computer", hand);}

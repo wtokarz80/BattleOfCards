@@ -2,7 +2,7 @@ public abstract class Player {
     private String playerName;
     private Hand hand;
     private boolean canPlay;
-    private Card currentCard;
+//    private Card currentCard;
 
 
     public Player(String playerName, Hand hand){
@@ -32,10 +32,10 @@ public abstract class Player {
 
     public Card showCurrentCard(){
         Card card = hand.getHandList().get(0);
-        hand.getHandList().remove(0);
-        return currentCard;
+//        hand.getHandList().remove(0);
+        return card;
 }
 
-    abstract void chooseStatistic();
+    abstract String chooseStatistic();
 
 }

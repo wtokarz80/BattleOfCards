@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 public abstract class Player {
     private String playerName;
     private Hand hand;
@@ -31,11 +33,37 @@ public abstract class Player {
     }
 
     public Card showCurrentCard(){
-        Card card = hand.getHandList().get(0);
-//        hand.getHandList().remove(0);
-        return card;
-}
+        Iterator<Card> iterator = hand.getHandList().iterator();
+        if (iterator.hasNext()){
+            Card card = iterator.next();
+            return card;
+        }
+
+//        if (hand.getHandList().size() > 0){
+//            Card card = hand.getHandList().get(0);
+//            return card;
+//        }
+        return null;
+    }
+    public  void removeCard(Card card){
+
+    }
 
     abstract String chooseStatistic();
 
 }
+//    public Hand dealCards(int numberOfCards){
+//
+//        if (numberOfCards > cardList.size() || numberOfCards <= 0){
+//            numberOfCards = cardList.size();
+//        }
+//        Iterator<Card> iterator = cardList.iterator();
+//        for (int i = 0; i < numberOfCards; i++){
+//            if (iterator.hasNext()) {
+//                Card card = iterator.next();
+//                hand.addCard(card);
+//                iterator.remove();
+//            }
+//        }
+//        return hand;
+//    }

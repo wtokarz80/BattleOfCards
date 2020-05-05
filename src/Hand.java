@@ -21,8 +21,11 @@ public class Hand {
 
     public Card putCardOnTable(){
         Card card = handList.get(0);
-        handList.remove(0);
         return card;
+    }
+
+    public void removeCard(Card card){
+        handList.remove(card);
     }
 
 

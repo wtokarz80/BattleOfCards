@@ -31,7 +31,7 @@
 		<Attributes>
 			<Attr type="strength">10</Attr>
 			<Attr type="intelligence">4</Attr>
-			<Attr type="agility">7</Attr>
+			<Attr type="agility">8</Attr>
 			<Attr type="charisma">4</Attr>
 		</Attributes>
 	</Card>
@@ -49,7 +49,7 @@
 		<Attributes>
 			<Attr type="strength">4</Attr>
 			<Attr type="intelligence">3</Attr>
-			<Attr type="agility">7</Attr>
+			<Attr type="agility">6</Attr>
 			<Attr type="charisma">6</Attr>
 		</Attributes>
 	</Card>

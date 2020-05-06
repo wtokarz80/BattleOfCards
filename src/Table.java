@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.*;
 
 public class Table {
@@ -59,6 +60,7 @@ public class Table {
     private void startGame(Player currentPlayer, Player opponentPlayer) {
         Card currentPlayerCard = currentPlayer.showCurrentCard();
         Card opponentPlayerCard = opponentPlayer.showCurrentCard();
+        System.out.println("My " + currentPlayerCard.toString());
         String chosenStatistic = currentPlayer.chooseStatistic();
 
         playerPutCard(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);

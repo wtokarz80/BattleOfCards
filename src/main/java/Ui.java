@@ -1,12 +1,20 @@
+import com.jakewharton.fliptables.FlipTable;
+
 import java.util.Scanner;
 
 public class Ui {
 
     public void displayMenu(){
+        String[] headers = {"","Select one of the options:"};
+        String[][] data = {{ "(1)", "Play The Game" },
+        { "(2)", "About The Game" },
+        { "(3)", "Creators List" },
+        { "(0)", "Quit The Game" }
+        };
         boolean isRunning = true;
         welcomeScreen();
         while(isRunning){
-            System.out.println("Select one of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
+            System.out.println(FlipTable.of(headers, data));
             int userInput = getNumericInput();
             if(userInput == 1){
                 chooseGameMode();
@@ -98,13 +106,22 @@ public class Ui {
     }
 
     public void chooseGameMode(){
-        System.out.println("Select one of the options:\n(1)PVC\n(2)PVP\n");
+        String[] headers = {"", "Select Game Mode: "};
+        String[][] data = {
+                {"(1)", "Player vs Computer"},
+                {"(2)", "Player vs Player"},
+                {"(3)", "Computer vs Computer"}
+        };
+        System.out.println(FlipTable.of(headers, data));
         int userInput = getNumericInput();
         if(userInput == 1){
             Table table = new Table(true, false);
         }
         else if(userInput == 2){
             Table table = new Table(true, true);
+        }
+        else if(userInput == 3){
+            Table table = new Table(false, false);
         }
         else{
             System.out.println("Use Only Allowed Options");

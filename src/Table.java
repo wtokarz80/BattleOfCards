@@ -78,7 +78,6 @@ public class Table {
                 break;
         }
 
-        tableCards.clear();
         System.out.println("Press enter to continue");
         scan.nextLine();
     }
@@ -88,10 +87,12 @@ public class Table {
             for (Card card : tableCards){
                 currentPlayer.getHand().getHandList().add(card);
             }
-        } else {
+            tableCards.clear();
+        } else if (currentPlayerCard.getCharisma() < opponentPlayerCard.getCharisma()){
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         }
     }
 
@@ -100,10 +101,12 @@ public class Table {
             for (Card card : tableCards){
                 currentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         } else {
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         }
     }
 
@@ -112,10 +115,12 @@ public class Table {
             for (Card card : tableCards){
                 currentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         } else {
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         }
     }
 
@@ -124,10 +129,12 @@ public class Table {
             for (Card card : tableCards){
                 currentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         } else {
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
+            tableCards.clear();
         }
     }
 

@@ -59,12 +59,12 @@ public class Table {
     private void startGame(Player currentPlayer, Player opponentPlayer) {
         Card currentPlayerCard = currentPlayer.showCurrentCard();
         Card opponentPlayerCard = opponentPlayer.showCurrentCard();
-        System.out.println("My " + currentPlayerCard.toString());
+        System.out.println(currentPlayer.getPlayerName() + "'s " + currentPlayerCard.toString());
         String chosenStatistic = currentPlayer.chooseStatistic();
 
         playerPutCard(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);
 
-        switch (chosenStatistic){
+        switch (chosenStatistic) {
             case "strength":
                 checkStrength(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard);
                 break;
@@ -79,7 +79,9 @@ public class Table {
                 break;
         }
 
-        System.out.println("Press enter to continue");
+        System.out.println(currentPlayer.getPlayerName() + " hand size :" + currentPlayer.getHand().getHandList().size());
+        System.out.println(opponentPlayer.getPlayerName() + " hand size:" + opponentPlayer.getHand().getHandList().size());
+        System.out.println("Press enter to continue...");
         scan.nextLine();
     }
 
@@ -89,10 +91,14 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else if (currentPlayerCard.getCharisma() < opponentPlayerCard.getCharisma()){
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
+            Common.delay(2000);
+            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
             tableCards.clear();
         }
     }
@@ -103,11 +109,15 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else {
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
         }
     }
 
@@ -117,11 +127,15 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else {
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
         }
     }
 
@@ -131,27 +145,37 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else {
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
+            Common.delay(2000);
+            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
         }
     }
 
     private void playerPutCard(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard, String chosenStatistic) {
-        System.out.println("Table size: " + tableCards.size());
-        System.out.println(currentPlayer.getPlayerName() + " hand size :" + currentPlayer.getHand().getHandList().size());
-        System.out.println(opponentPlayer.getPlayerName() + " hand size:" + opponentPlayer.getHand().getHandList().size());
+   //     System.out.println("Table size: " + tableCards.size());
+
         System.out.println();
 
-        System.out.println("Name " + currentPlayer.getPlayerName() + " " + currentPlayerCard);
-        System.out.println("Name " + currentPlayer.getPlayerName() + " " + chosenStatistic);
+        System.out.println(currentPlayer.getPlayerName() + " has chosen " + chosenStatistic);
+        Common.delay(1000);
+
         tableCards.add(currentPlayerCard);
         currentPlayer.removeCard(currentPlayerCard);
-        System.out.println("Name " + opponentPlayer.getPlayerName() + " " + opponentPlayerCard);
+
         tableCards.add(opponentPlayerCard);
         opponentPlayer.removeCard(opponentPlayerCard);
+
+        System.out.println(currentPlayer.getPlayerName() + "'s " + currentPlayerCard);
+        System.out.println(opponentPlayer.getPlayerName() + "'s " + opponentPlayerCard);
+
+
+
     }
 
 

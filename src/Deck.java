@@ -24,22 +24,6 @@ public class Deck {
         return hand;
     }
 
-    public Hand dealCards(int numberOfCards){
-
-        if (numberOfCards > cardList.size() || numberOfCards <= 0){
-            numberOfCards = cardList.size();
-        }
-        Iterator<Card> iterator = cardList.iterator();
-        for (int i = 0; i < numberOfCards; i++){
-            if (iterator.hasNext()) {
-                Card card = iterator.next();
-                hand.addCard(card);
-                iterator.remove();
-            }
-        }
-        return hand;
-    }
-
     public void shuffle(){
         Collections.shuffle(cardList);
     }

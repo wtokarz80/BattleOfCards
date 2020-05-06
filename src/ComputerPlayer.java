@@ -19,7 +19,6 @@ public class ComputerPlayer extends Player {
         cardStats.put("charisma", card.getCharisma());
 
         String playForAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getKey();
-        int valueOfPlayAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getValue();
 
         return playForAttribute;
     }

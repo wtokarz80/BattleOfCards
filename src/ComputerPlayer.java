@@ -13,10 +13,10 @@ public class ComputerPlayer extends Player {
         Card card = super.showCurrentCard();
         Map<String, Integer> cardStats;
         cardStats = new LinkedHashMap<>();
-        cardStats.put("Strength", card.getStrength());
-        cardStats.put("Intelligence", card.getIntelligence());
-        cardStats.put("Agility", card.getAgility());
-        cardStats.put("Charisma", card.getCharisma());
+        cardStats.put("strength", card.getStrength());
+        cardStats.put("intelligence", card.getIntelligence());
+        cardStats.put("agility", card.getAgility());
+        cardStats.put("charisma", card.getCharisma());
 
         String playForAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getKey();
         int valueOfPlayAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getValue();

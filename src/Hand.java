@@ -24,9 +24,9 @@ public class Hand {
         return card;
     }
 
-    public void removeCard(Card card){
-        handList.remove(card);
-    }
+//    public void removeCard(Card card){
+//        handList.remove(card);
+//    }
 
 
 

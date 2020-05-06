@@ -4,7 +4,7 @@ public abstract class Player {
     private String playerName;
     private Hand hand;
     private boolean canPlay;
-//    private Card currentCard;
+    private Card currentCard;
 
 
     public Player(String playerName, Hand hand){
@@ -35,8 +35,8 @@ public abstract class Player {
     public Card showCurrentCard(){
         Iterator<Card> iterator = hand.getHandList().iterator();
         if (iterator.hasNext()){
-            Card card = iterator.next();
-            return card;
+            Card currentCard = iterator.next();
+            return currentCard;
         }
 
 //        if (hand.getHandList().size() > 0){
@@ -46,7 +46,11 @@ public abstract class Player {
         return null;
     }
     public  void removeCard(Card card){
+        hand.getHandList().remove(card);
+    }
 
+    public Card getCurrentCard() {
+        return currentCard;
     }
 
     abstract String chooseStatistic();

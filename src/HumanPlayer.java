@@ -7,21 +7,6 @@ public class HumanPlayer extends Player {
         super(playerName, hand);
     }
 
-//    @Override
-//    public String chooseStatistic() {
-//        Card card = super.showCurrentCard();
-//        Map<String, Integer> cardStats;
-//        cardStats = new LinkedHashMap<>();
-//        cardStats.put("strength", card.getStrength());
-//        cardStats.put("intelligence", card.getIntelligence());
-//        cardStats.put("agility", card.getAgility());
-//        cardStats.put("charisma", card.getCharisma());
-//
-//        String playForAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getKey();
-//        int valueOfPlayAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getValue();
-//
-//        return playForAttribute;
-//    }
 
     @Override
     public String chooseStatistic() {
@@ -46,10 +31,5 @@ public class HumanPlayer extends Player {
                 return "lol";
             }
         }   return "lol2";
-    }
-
-    public static void playTheGame(){
-        Ui.displayMenu();
-
     }
 }

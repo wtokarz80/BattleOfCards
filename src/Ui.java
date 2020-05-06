@@ -2,14 +2,14 @@ import java.util.Scanner;
 
 public class Ui {
 
-    public static void displayMenu(){
+    public void displayMenu(){
         boolean isRunning = true;
-        System.out.println("Welcome To Battle Cards\n");
+        welcomeScreen();
         while(isRunning){
-            System.out.println("Select on of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
+            System.out.println("Select one of the options:\n(1) Play The Game\n(2)About The Game\n(3)Creators List\n(0)Quit The Game");
             int userInput = getNumericInput();
             if(userInput == 1){
-                //start the game
+                chooseGameMode();
                 isRunning = false;
             }
             else if(userInput == 2){
@@ -36,7 +36,7 @@ public class Ui {
         }
     }
 
-    public static void clearScreen(){
+    public void clearScreen(){
         System.out.print("\033[H\033[2J");
     }
 
@@ -56,34 +56,25 @@ public class Ui {
     }
 
 
-    public static void welcomeScreen(){
+    public void welcomeScreen(){
         clearScreen();
         System.out.println("Welcome To Battle Cards \n");
     }
 
-    public static void winningScreen(){
-        clearScreen();
-        System.out.println("\n Player 1 wins the game \n");
-    }
 
-    public static void loosingScreen(){
-        clearScreen();
-        System.out.println("\n You loose, computer wins \n");
-    }
-
-    public static void creatorsList(){
+    public void creatorsList(){
         System.out.println("This Game Was Created By: \n");
         System.out.println("Mikołaj Urbanek \n");
         System.out.println("Wojciech Tokarz \n");
         System.out.println("Michał Myczka \n");
     }
 
-    public static void exitGame(){
+    public void exitGame(){
         System.out.println("Bye Bye");
         System.exit(0);
     }
 
-    public static void displayAbout(){
+    public void displayAbout(){
         System.out.println("This Game Is Called Battle Cards\n");
         System.out.println("The Game Takes Place Alternately With Other Players Or A Computer\n");
         System.out.println("When It's Your Turn, Choose Statistic Of Your Current Card That You Want To Use\n");
@@ -104,5 +95,19 @@ public class Ui {
             return new HumanPlayer(playerName, hand);}
             else
                 {return new ComputerPlayer("computer", hand);}
+    }
+
+    public void chooseGameMode(){
+        System.out.println("Select one of the options:\n(1)PVC\n(2)PVP\n");
+        int userInput = getNumericInput();
+        if(userInput == 1){
+            Table table = new Table(true, false);
+        }
+        else if(userInput == 2){
+            Table table = new Table(true, true);
+        }
+        else{
+            System.out.println("Use Only Allowed Options");
+        }
     }
 }

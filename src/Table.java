@@ -1,19 +1,17 @@
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Table {
     Scanner scan;
-    int numberOfCards;
     private List<Card> tableCards;
     XMLParser xmlParser;
     Deck newDeck;
     Player player1;
     Player player2;
 
-    public Table() {
+    public Table(boolean isHuman1, boolean isHuman2) {
         scan = new Scanner(System.in);
-        player1 = Ui.createPlayer(true);
-        player2 = Ui.createPlayer(false);         //gracze siadają do stołu
+        player1 = Ui.createPlayer(isHuman1);
+        player2 = Ui.createPlayer(isHuman2);
         xmlParser = new XMLParser();
         newDeck = xmlParser.getDeck();
         tableCards = new ArrayList<>();                  //krupier wyciąga karty na stół
@@ -44,11 +42,12 @@ public class Table {
             startGame(currentPlayer, opponentPlayer);
             ifCanPlay = canPlayersPlayer(currentPlayer, opponentPlayer);
         }
-        winGameScreen(currentPlayer);
+        endGameScreen(currentPlayer, opponentPlayer);
     }
 
-    private void winGameScreen(Player currentPlayer) {
+    private void endGameScreen(Player currentPlayer, Player opponentPlayer) {
         System.out.println("The Winner is: " + currentPlayer.getPlayerName());
+        System.out.println("The Looser is: " + opponentPlayer.getPlayerName());
     }
 
     private boolean canPlayersPlayer(Player currentPlayer, Player opponentPlayer) {

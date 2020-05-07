@@ -8,7 +8,7 @@ public class Card {
     private int agility;
     private int charisma;
 
-    public Card(String name, int strength, int intelligence, int agility, int charisma){
+    public Card(String name, int strength, int intelligence, int agility, int charisma) {
         this.name = name;
         this.strength = strength;
         this.intelligence = intelligence;
@@ -58,25 +58,18 @@ public class Card {
 
     @Override
     public String toString() {
-        String[] headers = { name ,  "(-_^)" };
+        String[] headers = {name, "(-_^)"};
         String[][] data = {
-                { "(1) Strength", String.valueOf(strength)},
-                { "(2) Intelligence", String.valueOf(intelligence)},
-                { "(3) Agility", String.valueOf(agility)},
-                { "(4) Charisma", String.valueOf(charisma)}
+                {"(1) Strength", String.valueOf(strength)},
+                {"(2) Intelligence", String.valueOf(intelligence)},
+                {"(3) Agility", String.valueOf(agility)},
+                {"(4) Charisma", String.valueOf(charisma)}
         };
-//        return "Card{" +
-//                "Hero: " + name + '\'' +
-//                ", strength=" + strength +
-//                ", intelligence=" + intelligence +
-//                ", agility=" + agility +
-//                ", charisma=" + charisma +
-//                '}';
-    return
-        FlipTable.of(headers, data);
+        return
+                FlipTable.of(headers, data);
     }
 
-    public String toStringCard(){
+    public String toStringCard() {
         String output = "";
         output += "-------------------\n";
         output += String.format("(1) STRENGTH: %-5d\n", strength);

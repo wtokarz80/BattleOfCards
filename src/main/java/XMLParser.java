@@ -2,14 +2,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
-import java.io.IOException;
 
 public class XMLParser {
 
@@ -17,7 +13,7 @@ public class XMLParser {
     private Document doc;
 
 
-    XMLParser(){
+    XMLParser() {
         deck = new Deck();
         loadXmlDocument();
         documentParse();
@@ -28,28 +24,28 @@ public class XMLParser {
         return deck;
     }
 
-    protected void loadXmlDocument(){
+    protected void loadXmlDocument() {
         try {
             File file = new File("cards.xml");
             DocumentBuilder dBuilder = DocumentBuilderFactory.newInstance()
                     .newDocumentBuilder();
             this.doc = dBuilder.parse(file);
             this.doc.getDocumentElement().normalize();
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void documentParse(){
+    public void documentParse() {
         System.out.println("Root: " + doc.getDocumentElement().getNodeName());
         NodeList cards = doc.getElementsByTagName("Card");
         System.out.println("Number of cards: " + cards.getLength());
         System.out.println();
 
-        for (int i = 0; i < cards.getLength(); i++){
+        for (int i = 0; i < cards.getLength(); i++) {
             Node node = cards.item(i);
 
-            if (node.getNodeType() != Node.ELEMENT_NODE){
+            if (node.getNodeType() != Node.ELEMENT_NODE) {
                 continue;
             }
             Element element = (Element) node;
@@ -62,7 +58,7 @@ public class XMLParser {
             int agility = getAttribute(attributes, 2);
             int charisma = getAttribute(attributes, 3);
 
-            Card card  = new Card(cardName, strength, intelligence, agility, charisma);
+            Card card = new Card(cardName, strength, intelligence, agility, charisma);
             deck.addCard(card);
         }
     }

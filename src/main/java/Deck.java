@@ -1,18 +1,18 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.List;
+
 public class Deck {
 
     private List<Card> cardList;
     private Hand hand;
 
-    public Deck(){
+    public Deck() {
         this.cardList = new ArrayList<>();
         hand = new Hand();
     }
 
-    public void addCard(Card card){
+    public void addCard(Card card) {
         cardList.add(card);
     }
 
@@ -24,10 +24,10 @@ public class Deck {
         return hand;
     }
 
-    public void shuffle(){
+    public void shuffle() {
         Collections.shuffle(cardList);
         System.out.println("CARD SHUFFLING\n");
-        for(int i = 0; i < 20; i++){
+        for (int i = 0; i < 20; i++) {
             System.out.print("\u25AE");
             wait(80);
         }
@@ -36,13 +36,10 @@ public class Deck {
 
     }
 
-    public void wait(int ms){
-        try
-        {
+    public void wait(int ms) {
+        try {
             Thread.sleep(ms);
-        }
-        catch(InterruptedException ex)
-        {
+        } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
         }
     }
@@ -54,15 +51,15 @@ public class Deck {
                 '}';
     }
 
-    public void removeCard(int i){
+    public void removeCard(int i) {
         cardList.remove(i);
     }
 
-    public int getSize(){
+    public int getSize() {
         return cardList.size();
     }
 
-    public Card getCardByIndex(int k){
+    public Card getCardByIndex(int k) {
         return cardList.get(k);
     }
 

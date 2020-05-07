@@ -1,3 +1,5 @@
+import com.jakewharton.fliptables.FlipTable;
+
 public class Card {
 
     private String name;
@@ -56,12 +58,21 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
-                "name='" + name + '\'' +
-                ", strength=" + strength +
-                ", intelligence=" + intelligence +
-                ", agility=" + agility +
-                ", charisma=" + charisma +
-                '}';
+        String[] headers = { name ,  "(-_^)" };
+        String[][] data = {
+                { "(1) Strength", String.valueOf(strength)},
+                { "(2) Intelligence", String.valueOf(intelligence)},
+                { "(3) Agility", String.valueOf(agility)},
+                { "(4) Charisma", String.valueOf(charisma)}
+        };
+//        return "Card{" +
+//                "Hero: " + name + '\'' +
+//                ", strength=" + strength +
+//                ", intelligence=" + intelligence +
+//                ", agility=" + agility +
+//                ", charisma=" + charisma +
+//                '}';
+    return
+        FlipTable.of(headers, data);
     }
 }

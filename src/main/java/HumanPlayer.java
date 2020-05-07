@@ -12,7 +12,7 @@ public class HumanPlayer extends Player {
     public String chooseStatistic() {
         boolean isRunning = true;
         while(isRunning){
-            System.out.println("Choose Statistic That You Want To Use:\n (1)strength\n (2)intelligence\n (3)agility\n (4)charisma\n");
+            System.out.println("Choose Statistic That You Want To Use...");
             int userInput = Ui.getNumericInput();
             if(userInput == 1){
                 return "strength";

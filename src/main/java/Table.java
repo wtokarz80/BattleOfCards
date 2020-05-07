@@ -1,3 +1,5 @@
+import com.jakewharton.fliptables.FlipTable;
+
 import java.util.*;
 
 public class Table {
@@ -68,7 +70,7 @@ public class Table {
     private void startGame(Player currentPlayer, Player opponentPlayer) {
         Card currentPlayerCard = currentPlayer.showCurrentCard();
         Card opponentPlayerCard = opponentPlayer.showCurrentCard();
-        System.out.println(currentPlayer.getPlayerName() + "'s " + currentPlayerCard.toString());
+        System.out.println(currentPlayer.getPlayerName() + "'s Card: \n" + currentPlayerCard.toString());
         String chosenStatistic = currentPlayer.chooseStatistic();
 
         playerPutCard(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);
@@ -88,8 +90,6 @@ public class Table {
                 break;
         }
 
-        System.out.println(currentPlayer.getPlayerName() + " hand size :" + currentPlayer.getHand().getHandList().size());
-        System.out.println(opponentPlayer.getPlayerName() + " hand size:" + opponentPlayer.getHand().getHandList().size());
         System.out.println("Press enter to continue...");
         scan.nextLine();
     }
@@ -101,13 +101,13 @@ public class Table {
             }
             tableCards.clear();
             Common.delay(2000);
-            System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
+            System.out.println(currentPlayer.getPlayerName() + " wins round, and takes both cards");
         } else if (currentPlayerCard.getCharisma() < opponentPlayerCard.getCharisma()){
             for (Card card : tableCards){
                 opponentPlayer.getHand().getHandList().add(card);
             }
             Common.delay(2000);
-            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
+            System.out.println(opponentPlayer.getPlayerName() + " wins round, and takes both cards");
             tableCards.clear();
         }
     }
@@ -180,8 +180,23 @@ public class Table {
         tableCards.add(opponentPlayerCard);
         opponentPlayer.removeCard(opponentPlayerCard);
 
-        System.out.println(currentPlayer.getPlayerName() + "'s " + currentPlayerCard);
-        System.out.println(opponentPlayer.getPlayerName() + "'s " + opponentPlayerCard);
+        String[] innerHeaders = { "Battle card: " };
+        String[][] innerData = { {String.valueOf(currentPlayerCard) } };
+        String inner = FlipTable.of(innerHeaders, innerData);
+        String[] innerHeaders2 = {"Battle card: "};
+        String[][] innerData2= { {String.valueOf(opponentPlayerCard) } };
+        String inner2 = FlipTable.of(innerHeaders2, innerData2);
+        String[] headers = {" ", "BATTLE OF CARDS", " "};
+        String[][] data = {
+                {"Current player: " +  currentPlayer.getPlayerName(), " ", "Opponent player: " +  opponentPlayer.getPlayerName() },
+                {"Cards in hand: " + String.valueOf(currentPlayer.getHand().getHandList().size()), "Cards on table: " +tableCards.size(), "Cards in hand: " + String.valueOf(opponentPlayer.getHand().getHandList().size()) },
+                { inner, "", inner2 }
+        };
+        System.out.println(FlipTable.of(headers, data));
+
+
+   //     System.out.println(currentPlayer.getPlayerName() + "'s " + currentPlayerCard);
+    //    System.out.println(opponentPlayer.getPlayerName() + "'s " + opponentPlayerCard);
 
 
 

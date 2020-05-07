@@ -18,7 +18,6 @@ public class Ui {
         };
         boolean isRunning = true;
         display.welcomeScreen();
-        clearScreen();
         while (isRunning) {
             System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
             System.out.println(Chalk.on("Choose Option:").magenta());

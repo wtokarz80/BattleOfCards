@@ -32,8 +32,6 @@ public class Deck {
             wait(80);
         }
         System.out.println("\n\n");
-
-
     }
 
     public void wait(int ms) {

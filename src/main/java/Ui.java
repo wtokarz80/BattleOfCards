@@ -55,12 +55,6 @@ public class Ui {
     }
 
 
-//    public int getNumericInput() {
-//        int userInput;
-//        userInput = scanner.nextInt();
-//        return userInput;
-//    }
-
     public String getStringInput() {
         String userInputString;
         userInputString = scanner.nextLine();

@@ -48,9 +48,11 @@ public class Table {
         Player currentPlayer = player1;
         Player opponentPlayer = player2;
         display.displayStartScreen(currentPlayer, opponentPlayer);
-        display.getStringInput();
+        System.out.println("Press enter to continue...");
+        ui.getStringInput();
 
         while (ifCanPlay) {
+            display.clearScreen();
             if (!switchPlayer) {
                 switchPlayer = true;
                 currentPlayer = player1;
@@ -91,7 +93,6 @@ public class Table {
         Card currentPlayerCard = currentPlayer.showCurrentCard();
         Card opponentPlayerCard = opponentPlayer.showCurrentCard();
         System.out.println(currentPlayer.getPlayerName() + "'s Card: \n" + currentPlayerCard.toString());
-        System.out.println("Your card: \n");
         String chosenStatistic = currentPlayer.chooseStatistic();
 
         playerPutCard(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);

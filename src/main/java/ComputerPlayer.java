@@ -10,6 +10,7 @@ public class ComputerPlayer extends Player {
 
     @Override
     public String chooseStatistic() {
+        loading();
         Card card = super.showCurrentCard();
         Map<String, Integer> cardStats;
         cardStats = new LinkedHashMap<>();
@@ -21,5 +22,22 @@ public class ComputerPlayer extends Player {
         String playForAttribute = cardStats.entrySet().stream().sorted(Collections.reverseOrder(Map.Entry.comparingByValue())).findFirst().get().getKey();
 
         return playForAttribute;
+    }
+
+    public void wait(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public void loading() {
+        System.out.println("COMPUTER TURN....THINKING......\n");
+        for (int i = 0; i < 20; i++) {
+            System.out.print("\u25AE");
+            wait(80);
+        }
+        System.out.println("\n\n");
     }
 }

@@ -1,11 +1,14 @@
+import com.github.tomaslanger.chalk.Chalk;
 import com.jakewharton.fliptables.FlipTable;
 
+import java.util.MissingFormatWidthException;
 import java.util.Scanner;
 
 public class Ui {
 
     public void displayMenu(){
-        String[] headers = {"","Select one of the options:"};
+        clearScreen();
+        String[] headers = {"", "Select one of the options:"};
         String[][] data = {{ "(1)", "Play The Game" },
         { "(2)", "About The Game" },
         { "(3)", "Creators List" },
@@ -14,32 +17,36 @@ public class Ui {
         boolean isRunning = true;
         welcomeScreen();
         while(isRunning){
-            System.out.println(FlipTable.of(headers, data));
+            System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
             int userInput = getNumericInput();
             if(userInput == 1){
+                clearScreen();
                 chooseGameMode();
                 isRunning = false;
             }
             else if(userInput == 2){
                 clearScreen();
                 displayAbout();
-                System.out.println("Press Enter To Continue\n");
+                System.out.println(Chalk.on("Press Enter To Continue").magenta());
                 getStringInput();
+                clearScreen();
             }
             else if(userInput == 3){
                 clearScreen();
                 creatorsList();
-                System.out.println("Press Enter To Continue\n");
+                System.out.println(Chalk.on("Press Enter To Continue").magenta());
                 getStringInput();
+                clearScreen();
             }
             else if(userInput == 0){
                 exitGame();
             }
             else{
                 clearScreen();
-                System.out.println("Please Choose One Of The Available Options: \n");
-                System.out.println("Press Enter To Continue\n");
+                System.out.println(Chalk.on("Please Choose Only Allowed Options").red());
+                System.out.println(Chalk.on("Press Enter To Continue").magenta());
                 getStringInput();
+                clearScreen();
             }
         }
     }
@@ -66,38 +73,46 @@ public class Ui {
 
     public void welcomeScreen(){
         clearScreen();
-        System.out.println("Welcome To Battle Cards \n");
+        String header[] = {"Welcome To Battle Cards"};
+        String data[][] = {{"MAIN MENU: "}};
+        System.out.println(Chalk.on(FlipTable.of(header, data)).cyan());
     }
 
 
     public void creatorsList(){
-        System.out.println("This Game Was Created By: \n");
-        System.out.println("Mikołaj Urbanek \n");
-        System.out.println("Wojciech Tokarz \n");
-        System.out.println("Michał Myczka \n");
+        String[] headers = {"This Game Was Created By:"};
+        String[][] data = { { "Mikołaj Urbanek" },
+        { "Wojciech Tokarz" },
+        { "Michał Myczka" } };
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
     }
 
     public void exitGame(){
-        System.out.println("Bye Bye");
+        clearScreen();
+        String[] headers = {"The Game Will End Now"};
+        String[][] data = { { "Bye Bye" }};
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
         System.exit(0);
     }
 
     public void displayAbout(){
-        System.out.println("This Game Is Called Battle Cards\n");
-        System.out.println("The Game Takes Place Alternately With Other Players Or A Computer\n");
-        System.out.println("When It's Your Turn, Choose Statistic Of Your Current Card That You Want To Use\n");
-        System.out.println("Highest Statistic Out Of The Chosen One Wins\n");
-        System.out.println("Player Takes All The Other Cards And Put Them At The Bottom Of His Deck\n");
-        System.out.println("Game Ends When Any Of The Players Or Computers Runs Out Of Cards To Play\n");
-        System.out.println("Player With The Most Amount Of Cards Wins\n");
-        System.out.println("Good Luck!\n");
+        String[] headers = {"Rules Of The Game:"};
+        String[][] data = { {"This Game Is Called Battle Cards" },
+                {"The Game Takes Place Alternately With Other Players Or A Computer" },
+                {"When It's Your Turn, Choose Statistic Of Your Current Card That You Want To Use" },
+                { "Highest Statistic Out Of The Chosen One Wins"},
+                {"Player Takes All The Other Cards And Put Them At The Bottom Of His Deck"},
+                {"Game Ends When Any Of The Players Or Computers Runs Out Of Cards To Play"},
+                {"Player With The Most Amount Of Cards Wins"},
+                {"Good Luck!"} };
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
     }
 
     public static Player createPlayer(boolean isHuman) {
 
         Hand hand = new Hand();
         if (isHuman){
-            System.out.println("Enter Your name, please");
+            System.out.println(Chalk.on("Enter Your name, please").magenta());
             String playerName = getStringInput();
 
             return new HumanPlayer(playerName, hand);}
@@ -106,25 +121,35 @@ public class Ui {
     }
 
     public void chooseGameMode(){
+        boolean isRunning = true;
+        while(isRunning){
+        clearScreen();
         String[] headers = {"", "Select Game Mode: "};
         String[][] data = {
                 {"(1)", "Player vs Computer"},
                 {"(2)", "Player vs Player"},
                 {"(3)", "Computer vs Computer"}
         };
-        System.out.println(FlipTable.of(headers, data));
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
         int userInput = getNumericInput();
-        if(userInput == 1){
-            Table table = new Table(true, false);
-        }
-        else if(userInput == 2){
-            Table table = new Table(true, true);
-        }
-        else if(userInput == 3){
-            Table table = new Table(false, false);
-        }
-        else{
-            System.out.println("Use Only Allowed Options");
+
+            if(userInput == 1){
+                Table table = new Table(true, false);
+                isRunning = false;
+            }
+            else if(userInput == 2){
+                Table table = new Table(true, true);
+                isRunning = false;
+            }
+            else if(userInput == 3){
+                Table table = new Table(false, false);
+                isRunning = false;
+            }
+            else{
+                System.out.println(Chalk.on("Please Choose Only Allowed Options").red());
+                System.out.println(Chalk.on("Press Enter To Continue").magenta());
+                getStringInput();
+            }
         }
     }
 }

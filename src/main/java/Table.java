@@ -46,8 +46,17 @@ public class Table {
     }
 
     private void endGameScreen(Player currentPlayer, Player opponentPlayer) {
-        System.out.println("The Winner is: " + currentPlayer.getPlayerName());
-        System.out.println("The Looser is: " + opponentPlayer.getPlayerName());
+        String winner;
+        String loser;
+        if (currentPlayer.getHand().getHandList().size() != 0){
+            winner = currentPlayer.getPlayerName();
+            loser = opponentPlayer.getPlayerName();
+        } else {
+            winner = opponentPlayer.getPlayerName();
+            loser = currentPlayer.getPlayerName();
+        }
+        System.out.println("The Winner is: " + winner);
+        System.out.println("The Looser is: " + loser);
     }
 
     private boolean canPlayersPlayer(Player currentPlayer, Player opponentPlayer) {

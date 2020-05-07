@@ -12,12 +12,10 @@ public class XMLParser {
     private Deck deck;
     private Document doc;
 
-
     XMLParser() {
         deck = new Deck();
         loadXmlDocument();
         documentParse();
-
     }
 
     public Deck getDeck() {

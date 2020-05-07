@@ -1,6 +1,7 @@
 import com.github.tomaslanger.chalk.Chalk;
 import com.jakewharton.fliptables.FlipTable;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Display {
@@ -27,11 +28,11 @@ public class Display {
         System.out.print("\033[H\033[2J");
     }
 
-    public void displayStartScreen(Player currentPlayer, Player opponentPlayer) {
+    public void displayStartScreen(Player currentPlayer, Player opponentPlayer, List<Card> tableCards) {
         String[] header = {"", "BATTLE OF CARDS", ""};
         String[][] data1 = {{String.format("Current Player: %-11s", currentPlayer.getPlayerName()), "",
                 String.format("Opponent player: %-10s", opponentPlayer.getPlayerName())},
-                {String.format("Cards in hand: %d", currentPlayer.getHand().getHandList().size()), "",
+                {String.format("Cards in hand: %d", currentPlayer.getHand().getHandList().size()), String.format("Cards on table: %d", tableCards.size()),
                         String.format("Cards in hand: %d", opponentPlayer.getHand().getHandList().size())},
                 {displayEmptyCard(), "", displayEmptyCard()}};
         System.out.println(Chalk.on(FlipTable.of(header, data1)).cyan());

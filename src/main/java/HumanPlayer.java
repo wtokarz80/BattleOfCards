@@ -10,7 +10,7 @@ public class HumanPlayer extends Player {
     public String chooseStatistic() {
         boolean isRunning = true;
         while (isRunning) {
-            System.out.println("Choose Statistic That You Want To Use...");
+            System.out.print("Choose Statistic That You Want To Use: ");
 
             int userInput = ui.getNumericInput("", 1, 5);
             if (userInput == 1) {

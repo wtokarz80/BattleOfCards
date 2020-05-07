@@ -19,9 +19,10 @@ public class Ui {
         boolean isRunning = true;
         display.welcomeScreen();
         while (isRunning) {
-            System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
-            System.out.println(Chalk.on("Choose Option:").magenta());
+            System.out.print(Chalk.on(FlipTable.of(headers, data)).cyan());
+            System.out.print(Chalk.on("Choose Option: ").magenta());
             int userInput = getNumericInput("", 0, 4);
+
             if (userInput == 1) {
                 clearScreen();
                 chooseGameMode();
@@ -65,7 +66,7 @@ public class Ui {
     public int getNumericInput(String title, int from, int to) {
         scanner.useDelimiter(System.lineSeparator());
         String userInput = "";
-        System.out.print(title);
+//        System.out.print(title);
         boolean validInput = false;
         while (!validInput) {
             userInput = scanner.next();
@@ -103,10 +104,10 @@ public class Ui {
                     {"(2)", "Player vs Player"},
                     {"(3)", "Computer vs Computer"}
             };
-            System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
-            System.out.println(Chalk.on("Choose Option:").magenta());
+            System.out.print(Chalk.on(FlipTable.of(headers, data)).cyan());
+            System.out.print(Chalk.on("Choose Option: ").magenta());
             int userInput = getNumericInput("", 1, 4);
-
+            clearScreen();
             if (userInput == 1) {
                 Table table = new Table(true, false);
                 isRunning = false;

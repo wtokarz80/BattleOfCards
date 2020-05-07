@@ -26,7 +26,7 @@ public class Deck {
 
     public void shuffle() {
         Collections.shuffle(cardList);
-        System.out.println("CARD SHUFFLING\n");
+        System.out.println("\nCARD SHUFFLING\n");
         for (int i = 0; i < 20; i++) {
             System.out.print("\u25AE");
             wait(80);

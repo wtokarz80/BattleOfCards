@@ -6,7 +6,5 @@ public class Main {
 
        Ui ui = new Ui();
        ui.displayMenu();
-
     }
-
 }

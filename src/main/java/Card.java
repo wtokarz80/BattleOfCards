@@ -64,4 +64,16 @@ public class Card {
                 ", charisma=" + charisma +
                 '}';
     }
+
+    public String toStringCard(){
+        String output = "";
+        output += "-------------------\n";
+        output += String.format("(1) STRENGTH: %-5d\n", strength);
+        output += String.format("(2) INTELLIGENCE: %-5d\n", intelligence);
+        output += String.format("(3) AGILITY: %-5d\n", agility);
+        output += String.format("(4) CHARISMA: %-5d\n", charisma);
+        output += "-------------------\n";
+
+        return output;
+    }
 }

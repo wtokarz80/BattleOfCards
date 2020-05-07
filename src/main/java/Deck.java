@@ -29,7 +29,7 @@ public class Deck {
         System.out.println("CARD SHUFFLING\n");
         for(int i = 0; i < 20; i++){
             System.out.print("\u25AE");
-            wait(100);
+            wait(80);
         }
         System.out.println("\n\n");
 

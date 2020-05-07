@@ -112,7 +112,8 @@ public class Table {
                 checkCharisma(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard);
                 break;
         }
-        Common.delay(3000);
+        System.out.println("Press enter to deal cards to winner...");
+        scan.nextLine();
         printTable(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, "waits for enter");
         System.out.println("Press enter to continue...");
         scan.nextLine();

@@ -23,7 +23,6 @@ public class HumanPlayer extends Player {
                 return "charisma";
             } else {
                 System.out.println("Choose Only Allowed Option: \n");
-                return "lol";
             }
         }
         return "lol2";

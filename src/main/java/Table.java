@@ -207,7 +207,7 @@ public class Table {
                 {"Cards in hand: " + String.valueOf(currentPlayer.getHand().getHandList().size()), "Cards on table: " + tableCards.size(), "Cards in hand: " + String.valueOf(opponentPlayer.getHand().getHandList().size())},
                 {inner, "Comparing by: \n" + chosenStatistic, inner2}
         };
-        System.out.println(FlipTable.of(headers, data));
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
     }
 
 

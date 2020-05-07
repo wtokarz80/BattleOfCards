@@ -21,6 +21,7 @@ public class Ui {
         clearScreen();
         while (isRunning) {
             System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
+            System.out.println(Chalk.on("Choose Option:").magenta());
             int userInput = getNumericInput("", 0, 4);
             if (userInput == 1) {
                 clearScreen();
@@ -57,6 +58,7 @@ public class Ui {
 
     public String getStringInput() {
         String userInputString;
+        Scanner scanner = new Scanner(System.in);
         userInputString = scanner.nextLine();
         return userInputString;
     }
@@ -103,6 +105,7 @@ public class Ui {
                     {"(3)", "Computer vs Computer"}
             };
             System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
+            System.out.println(Chalk.on("Choose Option:").magenta());
             int userInput = getNumericInput("", 1, 4);
 
             if (userInput == 1) {

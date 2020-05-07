@@ -6,6 +6,7 @@ import java.util.Scanner;
 public class Display {
     Scanner scanner = new Scanner(System.in);
 
+
     public String displayEmptyCard() {
         String sign = "\u29eb";
         String output = "";
@@ -33,7 +34,7 @@ public class Display {
                 {String.format("Cards in hand: %d", currentPlayer.getHand().getHandList().size()), "",
                         String.format("Cards in hand: %d", opponentPlayer.getHand().getHandList().size())},
                 {displayEmptyCard(), "", displayEmptyCard()}};
-        System.out.println(FlipTable.of(header, data1));
+        System.out.println(Chalk.on(FlipTable.of(header, data1)).cyan());
     }
 
     public void welcomeScreen() {

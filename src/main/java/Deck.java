@@ -26,6 +26,25 @@ public class Deck {
 
     public void shuffle(){
         Collections.shuffle(cardList);
+        System.out.println("CARD SHUFFLING\n");
+        for(int i = 0; i < 20; i++){
+            System.out.print("\u25AE");
+            wait(100);
+        }
+        System.out.println("\n\n");
+
+
+    }
+
+    public void wait(int ms){
+        try
+        {
+            Thread.sleep(ms);
+        }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
     }
 
     @Override

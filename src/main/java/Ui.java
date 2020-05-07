@@ -18,7 +18,7 @@ public class Ui {
             int userInput = getNumericInput();
             if(userInput == 1){
                 chooseGameMode();
-                isRunning = false;
+                displayMenu();
             }
             else if(userInput == 2){
                 clearScreen();

@@ -37,10 +37,7 @@ public class XMLParser {
     }
 
     public void documentParse() {
-        System.out.println("Root: " + doc.getDocumentElement().getNodeName());
         NodeList cards = doc.getElementsByTagName("Card");
-        System.out.println("Number of cards: " + cards.getLength());
-        System.out.println();
 
         for (int i = 0; i < cards.getLength(); i++) {
             Node node = cards.item(i);

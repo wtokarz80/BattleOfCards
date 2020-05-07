@@ -22,7 +22,7 @@ public class Ui {
             if(userInput == 1){
                 clearScreen();
                 chooseGameMode();
-                isRunning = false;
+                displayMenu();
             }
             else if(userInput == 2){
                 clearScreen();

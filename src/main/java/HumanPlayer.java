@@ -13,6 +13,7 @@ public class HumanPlayer extends Player {
         boolean isRunning = true;
         while(isRunning){
             System.out.println("Choose Statistic That You Want To Use...");
+
             int userInput = Ui.getNumericInput();
             if(userInput == 1){
                 return "strength";

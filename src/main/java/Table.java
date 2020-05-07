@@ -3,6 +3,7 @@ import com.jakewharton.fliptables.FlipTable;
 import java.util.*;
 
 public class Table {
+    Display display;
     Scanner scan;
     private List<Card> tableCards;
     XMLParser xmlParser;
@@ -11,6 +12,7 @@ public class Table {
     Player player2;
 
     public Table(boolean isHuman1, boolean isHuman2) {
+        display = new Display();
         scan = new Scanner(System.in);
         player1 = Ui.createPlayer(isHuman1);
         player2 = Ui.createPlayer(isHuman2);
@@ -18,18 +20,22 @@ public class Table {
         newDeck = xmlParser.getDeck();
         tableCards = new ArrayList<>();                  //krupier wyciąga karty na stół
 
-        newDeck.shuffle();                                      //krupier tasuje karty
+        newDeck.shuffle();
+        display.clearScreen();
 
         setPlayersHands(player1, player2, 3);
 
-        startGame();
+
+        initializeGame();
     }
 
-    public void startGame(){
+    public void initializeGame(){
         boolean ifCanPlay = true;
         boolean switchPlayer = false;
         Player currentPlayer = player1;
         Player opponentPlayer = player2;
+        display.displayStartScreen(currentPlayer, opponentPlayer);
+        display.getStringInput();
         
         while(ifCanPlay){
             if(!switchPlayer){
@@ -68,9 +74,13 @@ public class Table {
     }
 
     private void startGame(Player currentPlayer, Player opponentPlayer) {
+
         Card currentPlayerCard = currentPlayer.showCurrentCard();
         Card opponentPlayerCard = opponentPlayer.showCurrentCard();
         System.out.println(currentPlayer.getPlayerName() + "'s Card: \n" + currentPlayerCard.toString());
+        System.out.println("Your card: \n");
+//        display.currentCard(currentPlayer);
+//        System.out.println(currentPlayer.getPlayerName() + "'s " + currentPlayerCard.toString());
         String chosenStatistic = currentPlayer.chooseStatistic();
 
         playerPutCard(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);

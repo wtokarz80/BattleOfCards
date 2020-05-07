@@ -1,3 +1,4 @@
+import com.github.tomaslanger.chalk.Chalk;
 import com.jakewharton.fliptables.FlipTable;
 
 import java.util.Scanner;
@@ -51,6 +52,33 @@ public class Display {
         String[] header = {currentPlayer.showCurrentCard().getName().toUpperCase()};
         String[][] data1 = {{currentPlayer.showCurrentCard().toStringCard()}};
         System.out.println(FlipTable.of(header, data1));
+    }
+
+    public void welcomeScreen() {
+        String header[] = {"Welcome To Battle Cards"};
+        String data[][] = {{"MAIN MENU: "}};
+        System.out.println(Chalk.on(FlipTable.of(header, data)).cyan());
+    }
+
+    public void creatorsList() {
+        String[] headers = {"This Game Was Created By:"};
+        String[][] data = {{"Mikołaj Urbanek"},
+                {"Wojciech Tokarz"},
+                {"Michał Myczka"}};
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
+    }
+
+    public void displayAbout() {
+        String[] headers = {"Rules Of The Game:"};
+        String[][] data = {{"This Game Is Called Battle Cards"},
+                {"The Game Takes Place Alternately With Other Players Or A Computer"},
+                {"When It's Your Turn, Choose Statistic Of Your Current Card That You Want To Use"},
+                {"Highest Statistic Out Of The Chosen One Wins"},
+                {"Player Takes All The Other Cards And Put Them At The Bottom Of His Deck"},
+                {"Game Ends When Any Of The Players Or Computers Runs Out Of Cards To Play"},
+                {"Player With The Most Amount Of Cards Wins"},
+                {"Good Luck!"}};
+        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
     }
 }
 

@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public class Ui {
 
+    Scanner scanner = new Scanner(System.in);
+    Display display = new Display();
+
     public void displayMenu() {
         clearScreen();
         String[] headers = {"", "Select one of the options:"};
@@ -14,23 +17,24 @@ public class Ui {
                 {"(0)", "Quit The Game"}
         };
         boolean isRunning = true;
-        welcomeScreen();
+        display.welcomeScreen();
+        clearScreen();
         while (isRunning) {
             System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
-            int userInput = getNumericInput();
+            int userInput = getNumericInput("", 0, 4);
             if (userInput == 1) {
                 clearScreen();
                 chooseGameMode();
                 displayMenu();
             } else if (userInput == 2) {
                 clearScreen();
-                displayAbout();
+                display.displayAbout();
                 System.out.println(Chalk.on("Press Enter To Continue").magenta());
                 getStringInput();
                 clearScreen();
             } else if (userInput == 3) {
                 clearScreen();
-                creatorsList();
+                display.creatorsList();
                 System.out.println(Chalk.on("Press Enter To Continue").magenta());
                 getStringInput();
                 clearScreen();
@@ -51,35 +55,39 @@ public class Ui {
     }
 
 
-    public static int getNumericInput() {
-        int userInput;
-        Scanner scanner = new Scanner(System.in);
-        userInput = scanner.nextInt();
-        return userInput;
-    }
+//    public int getNumericInput() {
+//        int userInput;
+//        userInput = scanner.nextInt();
+//        return userInput;
+//    }
 
-    public static String getStringInput() {
+    public String getStringInput() {
         String userInputString;
-        Scanner scanner = new Scanner(System.in);
         userInputString = scanner.nextLine();
         return userInputString;
     }
 
-
-    public void welcomeScreen() {
-        clearScreen();
-        String header[] = {"Welcome To Battle Cards"};
-        String data[][] = {{"MAIN MENU: "}};
-        System.out.println(Chalk.on(FlipTable.of(header, data)).cyan());
+    public int getNumericInput(String title, int from, int to) {
+        scanner.useDelimiter(System.lineSeparator());
+        String userInput = "";
+        System.out.print(title);
+        boolean validInput = false;
+        while (!validInput) {
+            userInput = scanner.next();
+            if (isNumericValue(userInput) && isNumberInRange(userInput, from, to)) {
+                validInput = true;
+            }
+        }
+        return Integer.parseInt(userInput);
     }
 
+    private static boolean isNumericValue(String userInput) {
+        return !userInput.equals("") && userInput.matches("^[0-9]*$");
+    }
 
-    public void creatorsList() {
-        String[] headers = {"This Game Was Created By:"};
-        String[][] data = {{"Mikołaj Urbanek"},
-                {"Wojciech Tokarz"},
-                {"Michał Myczka"}};
-        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
+    private boolean isNumberInRange(String userInput, int from, int to) {
+        int option = Integer.parseInt(userInput);
+        return option >= from && option < to;
     }
 
     public void exitGame() {
@@ -88,32 +96,6 @@ public class Ui {
         String[][] data = {{"Bye Bye"}};
         System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
         System.exit(0);
-    }
-
-    public void displayAbout() {
-        String[] headers = {"Rules Of The Game:"};
-        String[][] data = {{"This Game Is Called Battle Cards"},
-                {"The Game Takes Place Alternately With Other Players Or A Computer"},
-                {"When It's Your Turn, Choose Statistic Of Your Current Card That You Want To Use"},
-                {"Highest Statistic Out Of The Chosen One Wins"},
-                {"Player Takes All The Other Cards And Put Them At The Bottom Of His Deck"},
-                {"Game Ends When Any Of The Players Or Computers Runs Out Of Cards To Play"},
-                {"Player With The Most Amount Of Cards Wins"},
-                {"Good Luck!"}};
-        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
-    }
-
-    public static Player createPlayer(boolean isHuman) {
-
-        Hand hand = new Hand();
-        if (isHuman) {
-            System.out.println(Chalk.on("Enter Your name, please").magenta());
-            String playerName = getStringInput();
-
-            return new HumanPlayer(playerName, hand);
-        } else {
-            return new ComputerPlayer("computer", hand);
-        }
     }
 
     public void chooseGameMode() {
@@ -127,7 +109,7 @@ public class Ui {
                     {"(3)", "Computer vs Computer"}
             };
             System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
-            int userInput = getNumericInput();
+            int userInput = getNumericInput("", 1, 4);
 
             if (userInput == 1) {
                 Table table = new Table(true, false);

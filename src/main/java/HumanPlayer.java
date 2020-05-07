@@ -1,6 +1,8 @@
 public class HumanPlayer extends Player {
+    public Ui ui;
     public HumanPlayer(String playerName, Hand hand) {
         super(playerName, hand);
+        ui = new Ui();
     }
 
 
@@ -10,7 +12,7 @@ public class HumanPlayer extends Player {
         while (isRunning) {
             System.out.println("Choose Statistic That You Want To Use...");
 
-            int userInput = Ui.getNumericInput();
+            int userInput = ui.getNumericInput("", 1, 5);
             if (userInput == 1) {
                 return "strength";
             } else if (userInput == 2) {

@@ -4,6 +4,7 @@ import com.jakewharton.fliptables.FlipTable;
 import java.util.*;
 
 public class Table {
+    Ui ui = new Ui();
     Display display;
     Scanner scan;
     private List<Card> tableCards;
@@ -15,8 +16,8 @@ public class Table {
     public Table(boolean isHuman1, boolean isHuman2) {
         display = new Display();
         scan = new Scanner(System.in);
-        player1 = Ui.createPlayer(isHuman1);
-        player2 = Ui.createPlayer(isHuman2);
+        player1 = createPlayer(isHuman1);
+        player2 = createPlayer(isHuman2);
         xmlParser = new XMLParser();
         newDeck = xmlParser.getDeck();
         tableCards = new ArrayList<>();                  //krupier wyciąga karty na stół
@@ -29,7 +30,18 @@ public class Table {
 
         initializeGame();
     }
+    public Player createPlayer(boolean isHuman) {
 
+        Hand hand = new Hand();
+        if (isHuman) {
+            System.out.println(Chalk.on("Enter Your name, please").magenta());
+            String playerName = ui.getStringInput();
+
+            return new HumanPlayer(playerName, hand);
+        } else {
+            return new ComputerPlayer("computer", hand);
+        }
+    }
     public void initializeGame() {
         boolean ifCanPlay = true;
         boolean switchPlayer = false;
@@ -109,13 +121,13 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(currentPlayer.getPlayerName() + " wins round, and takes both cards");
         } else if (currentPlayerCard.getCharisma() < opponentPlayerCard.getCharisma()) {
             for (Card card : tableCards) {
                 opponentPlayer.getHand().getHandList().add(card);
             }
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(opponentPlayer.getPlayerName() + " wins round, and takes both cards");
             tableCards.clear();
         }
@@ -127,14 +139,14 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else {
             for (Card card : tableCards) {
                 opponentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
         }
     }
@@ -145,14 +157,14 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else {
             for (Card card : tableCards) {
                 opponentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
         }
     }
@@ -163,14 +175,14 @@ public class Table {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(currentPlayer.getPlayerName() + " wins, and takes both cards");
         } else {
             for (Card card : tableCards) {
                 opponentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
-            Common.delay(2000);
+//            Common.delay(2000);
             System.out.println(opponentPlayer.getPlayerName() + " wins, and takes both cards");
         }
     }
@@ -180,7 +192,7 @@ public class Table {
         System.out.println();
 
         System.out.println(currentPlayer.getPlayerName() + " has chosen " + chosenStatistic);
-        Common.delay(1000);
+//        Common.delay(1000);
 
         tableCards.add(currentPlayerCard);
         currentPlayer.removeCard(currentPlayerCard);

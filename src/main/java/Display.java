@@ -11,16 +11,23 @@ public class Display {
     public String displayEmptyCard() {
         String sign = "\u29eb";
         String output = "";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
-        output += "      " + sign.repeat(15) + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+        output += "     " + sign.repeat(22) + "     "  + "\n";
+
+
         return output;
     }
 
@@ -30,7 +37,7 @@ public class Display {
 
     public void displayStartScreen(Player currentPlayer, Player opponentPlayer, List<Card> tableCards) {
         String[] header = {"", "BATTLE OF CARDS", ""};
-        String[][] data1 = {{String.format("Current Player: %-11s", currentPlayer.getPlayerName()), "",
+        String[][] data1 = {{String.format("Current player: %-11s", currentPlayer.getPlayerName()), "",
                 String.format("Opponent player: %-10s", opponentPlayer.getPlayerName())},
                 {String.format("Cards in hand: %d", currentPlayer.getHand().getHandList().size()), String.format("Cards on table: %d", tableCards.size()),
                         String.format("Cards in hand: %d", opponentPlayer.getHand().getHandList().size())},
@@ -39,8 +46,8 @@ public class Display {
     }
 
     public void welcomeScreen() {
-        String header[] = {"Welcome To Battle Cards"};
-        String data[][] = {{"MAIN MENU: "}};
+        String header[] = {"     B-A-T-T-L-E"};
+        String data[][] = {{"   O F  C A R D S   "}};
         System.out.println(Chalk.on(FlipTable.of(header, data)).cyan());
     }
 

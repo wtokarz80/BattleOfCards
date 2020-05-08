@@ -64,7 +64,7 @@ public class Table {
             startGame(currentPlayer, opponentPlayer);
             ifCanPlay = canPlayersPlayer(currentPlayer, opponentPlayer);
         }
-        display.clearScreen();
+
         endGameScreen(currentPlayer, opponentPlayer);
     }
 

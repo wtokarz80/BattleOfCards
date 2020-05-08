@@ -10,7 +10,7 @@ public class Ui {
 
     public void displayMenu() {
         clearScreen();
-        String[] headers = {"", "Select one of the options:"};
+        String[] headers = {"", "MAIN MENU"};
         String[][] data = {{"(1)", "Play The Game"},
                 {"(2)", "About The Game"},
                 {"(3)", "Creators List"},

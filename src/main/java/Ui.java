@@ -8,25 +8,16 @@ public class Ui {
     Scanner scanner = new Scanner(System.in);
     Display display = new Display();
 
-    public void displayMenu() {
+    public void choseOptionFromMainMenu() {
         clearScreen();
-        String[] headers = {"", "MAIN MENU"};
-        String[][] data = {{"(1)", "Play The Game"},
-                {"(2)", "About The Game"},
-                {"(3)", "Creators List"},
-                {"(0)", "Quit The Game"}
-        };
-        boolean isRunning = true;
         display.welcomeScreen();
-        while (isRunning) {
-            System.out.print(Chalk.on(FlipTable.of(headers, data)).cyan());
-            System.out.print(Chalk.on("Choose Option: ").magenta());
+        while (true) {
+            display.displayMainMenu();
             int userInput = getNumericInput("", 0, 4);
-
             if (userInput == 1) {
                 clearScreen();
                 chooseGameMode();
-                displayMenu();
+                choseOptionFromMainMenu();
             } else if (userInput == 2) {
                 clearScreen();
                 display.displayAbout();
@@ -41,12 +32,6 @@ public class Ui {
                 clearScreen();
             } else if (userInput == 0) {
                 exitGame();
-            } else {
-                clearScreen();
-                System.out.println(Chalk.on("Please Choose Only Allowed Options").red());
-                System.out.println(Chalk.on("Press Enter To Continue").magenta());
-                getStringInput();
-                clearScreen();
             }
         }
     }
@@ -54,7 +39,6 @@ public class Ui {
     public static void clearScreen() {
         System.out.print("\033[H\033[2J");
     }
-
 
     public String getStringInput() {
         String userInputString;
@@ -96,16 +80,9 @@ public class Ui {
 
     public void chooseGameMode() {
         boolean isRunning = true;
+        display.displayGameMode();
         while (isRunning) {
             clearScreen();
-            String[] headers = {"", "Select Game Mode: "};
-            String[][] data = {
-                    {"(1)", "Player vs Computer"},
-                    {"(2)", "Player vs Player"},
-                    {"(3)", "Computer vs Computer"}
-            };
-            System.out.print(Chalk.on(FlipTable.of(headers, data)).cyan());
-            System.out.print(Chalk.on("Choose Option: ").magenta());
             int userInput = getNumericInput("", 1, 4);
             clearScreen();
             if (userInput == 1) {
@@ -117,10 +94,6 @@ public class Ui {
             } else if (userInput == 3) {
                 Table table = new Table(false, false);
                 isRunning = false;
-            } else {
-                System.out.println(Chalk.on("Please Choose Only Allowed Options").red());
-                System.out.println(Chalk.on("Press Enter To Continue").magenta());
-                getStringInput();
             }
         }
     }

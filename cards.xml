@@ -27,7 +27,7 @@
 		</Attributes>
 	</Card>
 
-	<Card name ="Luck Skywalker">
+	<Card name ="Luke Skywalker">
 		<Attributes>
 			<Attr type="strength">10</Attr>
 			<Attr type="intelligence">4</Attr>

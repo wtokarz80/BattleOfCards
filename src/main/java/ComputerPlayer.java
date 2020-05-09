@@ -7,6 +7,10 @@ public class ComputerPlayer extends Player {
         super(playerName, hand);
     }
 
+    public void addNames(){
+
+    }
+
 
     @Override
     public String chooseStatistic() {

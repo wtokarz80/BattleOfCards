@@ -5,27 +5,24 @@ import java.util.*;
 
 public class Table {
     Ui ui = new Ui();
-    Display display;
-    Scanner scan;
-    private List<Card> tableCards;
-    XMLParser xmlParser;
-    Deck newDeck;
+    Display display = new Display();
+    Scanner scan = new Scanner(System.in);
+    XMLParser xmlParser = new XMLParser();
+    Deck newDeck = xmlParser.getDeck();
+    private List<Card> tableCards = new ArrayList<>();
     Player player1;
     Player player2;
+    public int count = 0;
 
     public Table(boolean isHuman1, boolean isHuman2) {
-        display = new Display();
-        scan = new Scanner(System.in);
         player1 = createPlayer(isHuman1);
         player2 = createPlayer(isHuman2);
-        xmlParser = new XMLParser();
-        newDeck = xmlParser.getDeck();
-        tableCards = new ArrayList<>();                  //krupier wyciąga karty na stół
+
         display.clearScreen();
         newDeck.shuffle();
         display.clearScreen();
 
-        setPlayersHands(player1, player2, 3);
+        setPlayersHands(3);
         initializeGame();
     }
 
@@ -37,9 +34,16 @@ public class Table {
             String playerName = ui.getStringInput();
             return new HumanPlayer(playerName, hand);
         } else {
-            return new ComputerPlayer("computer", hand);
+            count = setCount();
+            return new ComputerPlayer("computer " + count, hand);
+
         }
     }
+
+    private int setCount() {
+        return count = count + 1;
+    }
+
 
     public void initializeGame() {
         boolean ifCanPlay = true;
@@ -62,29 +66,13 @@ public class Table {
                 opponentPlayer = player1;
             }
             startGame(currentPlayer, opponentPlayer);
-            ifCanPlay = canPlayersPlayer(currentPlayer, opponentPlayer);
+            ifCanPlay = canPlayersPlay(currentPlayer, opponentPlayer);
         }
 
-        endGameScreen(currentPlayer, opponentPlayer);
+        display.endGameScreen(currentPlayer, opponentPlayer);
     }
 
-    private void endGameScreen(Player currentPlayer, Player opponentPlayer) {
-        String winner;
-        String loser;
-        if (currentPlayer.getHand().getHandList().size() != 0) {
-            winner = currentPlayer.getPlayerName();
-            loser = opponentPlayer.getPlayerName();
-        } else {
-            winner = opponentPlayer.getPlayerName();
-            loser = currentPlayer.getPlayerName();
-        }
-        System.out.println(Chalk.on("\nThe Winner is: " + winner).green());
-        System.out.println(Chalk.on("\nThe Looser is: " + loser).red());
-        System.out.println("\n\nPress enter to back to main menu.");
-        ui.scanner.nextLine();
-    }
-
-    private boolean canPlayersPlayer(Player currentPlayer, Player opponentPlayer) {
+    private boolean canPlayersPlay(Player currentPlayer, Player opponentPlayer) {
         int player1Cards = player1.getHand().getHandList().size();
         int player2Cards = player2.getHand().getHandList().size();
         return (player1Cards > 0 && player2Cards > 0);
@@ -94,43 +82,56 @@ public class Table {
 
         Card currentPlayerCard = currentPlayer.showCurrentCard();
         Card opponentPlayerCard = opponentPlayer.showCurrentCard();
+
         System.out.println(currentPlayer.getPlayerName() + "'s Card: \n" + currentPlayerCard.toString());
+
         String chosenStatistic = currentPlayer.chooseStatistic();
-
         playerPutCard(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);
-        printTable(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);
+        display.printTable(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic, tableCards);
 
-        switch (chosenStatistic) {
-            case "strength":
-                checkStrength(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard);
-                break;
-            case "intelligence":
-                checkIntelligence(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard);
-                break;
-            case "agility":
-                checkAgility(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard);
-                break;
-            case "charisma":
-                checkCharisma(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard);
-                break;
-        }
+        switchAttribute(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, chosenStatistic);
+
         System.out.println("Press enter to deal cards to winner...");
         scan.nextLine();
         display.clearScreen();
-//        printTable(currentPlayer, opponentPlayer, currentPlayerCard, opponentPlayerCard, "waits for enter");
         display.displayStartScreen(currentPlayer, opponentPlayer, tableCards);
         System.out.println("Press enter to continue...");
         scan.nextLine();
     }
 
-    private void checkCharisma(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard) {
-        if (currentPlayerCard.getCharisma() > opponentPlayerCard.getCharisma()) {
+    private void switchAttribute(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard, String chosenStatistic) {
+        switch (chosenStatistic) {
+            case "strength":
+                int currentPlayerStat = currentPlayerCard.getStrength();
+                int opponentPlayerStat = opponentPlayerCard.getStrength();
+                checkAttribute(currentPlayer, opponentPlayer, currentPlayer, opponentPlayer, currentPlayerStat,opponentPlayerStat);
+                break;
+            case "intelligence":
+                currentPlayerStat = currentPlayerCard.getIntelligence();
+                opponentPlayerStat = opponentPlayerCard.getIntelligence();
+                checkAttribute(currentPlayer, opponentPlayer, currentPlayer, opponentPlayer, currentPlayerStat,opponentPlayerStat);
+                break;
+            case "agility":
+                currentPlayerStat = currentPlayerCard.getAgility();
+                opponentPlayerStat = opponentPlayerCard.getAgility();
+                checkAttribute(currentPlayer, opponentPlayer, currentPlayer, opponentPlayer, currentPlayerStat,opponentPlayerStat);
+                break;
+            case "charisma":
+                currentPlayerStat = currentPlayerCard.getCharisma();
+                opponentPlayerStat = opponentPlayerCard.getCharisma();
+                checkAttribute(currentPlayer, opponentPlayer, currentPlayer, opponentPlayer, currentPlayerStat,opponentPlayerStat);
+                break;
+        }
+    }
+
+    private void checkAttribute(Player currentPlayer, Player opponentPlayer, Player currentPlayer1, Player opponentPlayer1, int currentPlayerStat, int opponentPlayerStat) {
+        if (currentPlayerStat > opponentPlayerStat){
             for (Card card : tableCards) {
                 currentPlayer.getHand().getHandList().add(card);
             }
             tableCards.clear();
             System.out.println(currentPlayer.getPlayerName() + " wins round, and takes cards\n");
-        } else if (currentPlayerCard.getCharisma() < opponentPlayerCard.getCharisma()) {
+        } else if (currentPlayerStat < opponentPlayerStat) {
             for (Card card : tableCards) {
                 opponentPlayer.getHand().getHandList().add(card);
             }
@@ -139,84 +140,15 @@ public class Table {
         }
     }
 
-    private void checkAgility(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard) {
-        if (currentPlayerCard.getAgility() > opponentPlayerCard.getAgility()) {
-            for (Card card : tableCards) {
-                currentPlayer.getHand().getHandList().add(card);
-            }
-            tableCards.clear();
-            System.out.println(currentPlayer.getPlayerName() + " wins, and takes cards\n");
-        } else {
-            for (Card card : tableCards) {
-                opponentPlayer.getHand().getHandList().add(card);
-            }
-            tableCards.clear();
-            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes cards\n");
-        }
-    }
-
-    private void checkIntelligence(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard) {
-        if (currentPlayerCard.getIntelligence() > opponentPlayerCard.getIntelligence()) {
-            for (Card card : tableCards) {
-                currentPlayer.getHand().getHandList().add(card);
-            }
-            tableCards.clear();
-            System.out.println(currentPlayer.getPlayerName() + " wins, and takes cards\n");
-        } else {
-            for (Card card : tableCards) {
-                opponentPlayer.getHand().getHandList().add(card);
-            }
-            tableCards.clear();
-            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes cards\n");
-        }
-    }
-
-    private void checkStrength(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard) {
-        if (currentPlayerCard.getStrength() > opponentPlayerCard.getStrength()) {
-            for (Card card : tableCards) {
-                currentPlayer.getHand().getHandList().add(card);
-            }
-            tableCards.clear();
-            System.out.println(currentPlayer.getPlayerName() + " wins, and takes cards\n");
-        } else {
-            for (Card card : tableCards) {
-                opponentPlayer.getHand().getHandList().add(card);
-            }
-            tableCards.clear();
-            System.out.println(opponentPlayer.getPlayerName() + " wins, and takes cards\n");
-        }
-    }
-
     private void playerPutCard(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard, String chosenStatistic) {
 
         tableCards.add(currentPlayerCard);
         currentPlayer.removeCard(currentPlayerCard);
-
         tableCards.add(opponentPlayerCard);
         opponentPlayer.removeCard(opponentPlayerCard);
-
-
     }
 
-    private void printTable(Player currentPlayer, Player opponentPlayer, Card currentPlayerCard, Card opponentPlayerCard, String chosenStatistic) {
-        System.out.print("\033[H\033[2J");
-        String[] innerHeaders = {"Battle card: "};
-        String[][] innerData = {{String.valueOf(currentPlayerCard)}};
-        String inner = FlipTable.of(innerHeaders, innerData);
-        String[] innerHeaders2 = {"Battle card: "};
-        String[][] innerData2 = {{String.valueOf(opponentPlayerCard)}};
-        String inner2 = FlipTable.of(innerHeaders2, innerData2);
-        String[] headers = {" ", "BATTLE OF CARDS", " "};
-        String[][] data = {
-                {"Current player: " + currentPlayer.getPlayerName(), " ", "Opponent player: " + opponentPlayer.getPlayerName()},
-                {"Cards in hand: " + String.valueOf(currentPlayer.getHand().getHandList().size()), "Cards on table: " + tableCards.size(), "Cards in hand: " + String.valueOf(opponentPlayer.getHand().getHandList().size())},
-                {inner, "Comparing by: \n\n" + chosenStatistic.toUpperCase(), inner2}
-        };
-        System.out.println(Chalk.on(FlipTable.of(headers, data)).cyan());
-    }
-
-
-    public void setPlayersHands(Player player1, Player player2, int numberOfCards) {
+    public void setPlayersHands(int numberOfCards) {
         if (numberOfCards > newDeck.getCardList().size() || numberOfCards <= 0) {
             numberOfCards = newDeck.getCardList().size();
         }
@@ -236,5 +168,4 @@ public class Table {
         deck.removeCard(0);
         return hand;
     }
-
 }
